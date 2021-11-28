@@ -22,7 +22,7 @@ const GameScreen = () => {
     }
 
     return (
-        <div>
+        <div className='gamescreen-container'>
             <h1>Game in course</h1>
             <h2>Discover all equals pairs to win.</h2>
             <Board countriesCards={countriesCards}/>

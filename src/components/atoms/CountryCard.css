@@ -1,6 +1,20 @@
 .country-card {
-    background-color: slateblue;
+    border-radius: 20px;
+    background-color: black;
+}
+
+.country-card:hover {
+    cursor: pointer;
 }
 
 .country-image {
+    width: 200px;
+    border-radius: 20px;
+    transition-duration: 0.2s;
 }
+
+.country-image:hover {
+    transform: scale(1.03);
+    transition-duration: 0.2s;
+}
+
