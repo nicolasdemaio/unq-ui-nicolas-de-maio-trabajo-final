@@ -1,16 +1,15 @@
 import './GameScreen.css'
-import countries from "../../assets/countries";
+import gameCountries from "../../assets/countries";
 import {useEffect, useState} from "react";
-import Board from "../molecules/Board";
+import CountryCard from "../atoms/CountryCard";
 
 const GameScreen = () => {
 
-    const [countriesCards, setCountriesCards] = useState([])
+    const [countries, setCountries] = useState([])
 
     useEffect(() => {
-        const randomizedCountries = randomizeArray(countries.concat(countries))
-        setCountriesCards(randomizedCountries)
-        console.log(randomizedCountries)
+        const randomizedCountries = randomizeArray(gameCountries.concat(gameCountries))
+        setCountries(randomizedCountries)
     }, [])
 
     const randomizeArray = anArray => {
@@ -21,11 +20,53 @@ const GameScreen = () => {
         return anArray;
     }
 
+    const [cardA, setCardA] = useState({})
+    const [cardB, setCardB] = useState({})
+
+    const checkIfMatchTheSelectedCountries = () => {
+        if (cardA.number == cardB.name) {
+
+        } else {
+            resetSelectedCards()
+        }
+    }
+
+    const resetSelectedCards = () => {
+
+    }
+
+    const seeCard = (name, index) => {
+        if (cardA.name === name && cardA.index === index) return 0 // To exit, do nothing.
+        if (!cardA.name) {
+            setCardA({name, index})
+        } else if (!cardB.name) {
+            setCardB({name, index})
+            setTimeout(() =>
+                checkIfMatchTheSelectedCountries(), 1000
+            )
+
+        }
+    }
+
     return (
         <div className='gamescreen-container'>
             <h1>Game in course</h1>
             <h2>Discover all equals pairs to win.</h2>
-            <Board countriesCards={countriesCards}/>
+            <div className='cards-container'>
+                {countries.map((country, i) => (
+                    <CountryCard
+                        name={country.name}
+                        number={i}
+                        image={country.imageSrc}
+                        seeCard={seeCard}
+                        discovered={false}
+                    />
+                ))}
+            </div>
+
+            <p>{cardA.name}</p>
+            <p>{cardB.name}</p>
+
         </div>
 
     )
