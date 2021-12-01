@@ -11,7 +11,7 @@ const HomeScreen = () => {
             <h1>MEMOTEST</h1>
             <h2>with countries</h2>
             <h3>Try to ....</h3>
-            <p>Do you want try?</p>
+            <p>Do you want to try?</p>
             <button onClick={() => {
                 navigate('/play')
             }}>Play
