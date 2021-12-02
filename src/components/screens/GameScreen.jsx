@@ -2,9 +2,10 @@ import './GameScreen.css'
 import gameCountries from "../../assets/countries";
 import {useEffect, useState} from "react";
 import CountryCard from "../atoms/CountryCard";
+import {useNavigate} from "react-router-dom";
 
 const GameScreen = () => {
-
+    const navigate = useNavigate()
     const [countries, setCountries] = useState([])
 
     const randomizeArray = anArray => {
@@ -23,11 +24,7 @@ const GameScreen = () => {
     const [cardsToReset, setCardsToReset] = useState([])
     const [matchedCards, setMatchedCards] = useState([])
 
-    const [isWinner, setIsWinner] = useState(false)
-
-    const checkIfIsWinner = () => {
-        if (matchedCards.length === gameCountries.length) setIsWinner(true)
-    }
+    const checkIfIsWinner = () => (matchedCards.length === (gameCountries.length - 1)) ? navigate('/done') : null
 
     const handleCardClick = (name, number) => {
         if (!selectedCard.name) {
@@ -61,8 +58,8 @@ const GameScreen = () => {
                     />
                 ))}
             </div>
-            
-            {isWinner ? <p>Ganaste</p> : null}
+
+            <p>Reimaining cards: {gameCountries.length - matchedCards.length}</p>
 
         </div>
 

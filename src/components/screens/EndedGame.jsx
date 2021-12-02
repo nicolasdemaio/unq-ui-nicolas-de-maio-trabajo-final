@@ -7,7 +7,7 @@ const EndedGame = () => {
     return (
         <div>
             <div>Ganaste</div>
-            <button onClick={navigate('/play')}>
+            <button onClick={() => navigate('/play')}>
                 Jugar de nuevo
             </button>
         </div>

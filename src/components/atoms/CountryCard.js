@@ -25,8 +25,8 @@ const CountryCard = ({name, number, image, handleCardClick, cardsToReset, matche
     return (
         <div className='country-card' onClick={handleClick}>
             {(isMatched || isSelected) ?
-                <img className='country-image' src={image}/> :
-                < img className='country-image' src={notDiscoveredImage}/>}
+                <img className='country-image' src={image} alt={name}/> :
+                <img className='country-image' src={notDiscoveredImage} alt='not-discovered'/>}
 
         </div>
     )
