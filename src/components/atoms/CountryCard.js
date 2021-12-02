@@ -1,25 +1,33 @@
 import './CountryCard.css'
+import {useEffect, useState} from 'react'
 import notDiscoveredImage from './not_discovered_country.png'
-import {useState} from "react";
 
-const CountryCard = ({name, number, image, showCard, hideCard, initialDiscovered}) => {
+const CountryCard = ({name, number, image, handleCardClick, cardsToReset, matchedCards}) => {
 
-    const [discovered, setDiscovered] = useState(initialDiscovered)
+    const [isSelected, setIsSelected] = useState(false)
+    const [isMatched, setIsMatched] = useState(false)
+
+    useEffect(() => {
+            if (cardsToReset.includes(number)) setIsSelected(false)
+            if (matchedCards.includes(name)) setIsMatched(true)
+        }
+        , [cardsToReset, matchedCards])
 
     const handleClick = () => {
-        const returnedNumber = showCard(name, number)
-        if (returnedNumber != 0) {
-            setDiscovered(true)
+        if (isMatched || isSelected) {
+            // do nothing
+        } else {
+            setIsSelected(true)
+            handleCardClick(name, number)
         }
-
     }
 
     return (
         <div className='country-card' onClick={handleClick}>
-            {discovered ?
+            {(isMatched || isSelected) ?
                 <img className='country-image' src={image}/> :
-                <img className='country-image' src={notDiscoveredImage}/>
-            }
+                < img className='country-image' src={notDiscoveredImage}/>}
+
         </div>
     )
 }

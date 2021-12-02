@@ -14,42 +14,35 @@ const GameScreen = () => {
         }
         return anArray;
     }
-
-    const [cardA, setCardA] = useState({})
-    const [cardB, setCardB] = useState({})
-
     useEffect(() => {
         const randomizedCountries = randomizeArray(gameCountries.concat(gameCountries))
         setCountries(randomizedCountries)
     }, [])
 
-    useEffect(() => {
-        checkIfMatchTheSelectedCountries()
-    }, [cardB])
+    const [selectedCard, setSelectedCard] = useState({})
+    const [cardsToReset, setCardsToReset] = useState([])
+    const [matchedCards, setMatchedCards] = useState([])
 
-    const checkIfMatchTheSelectedCountries = () => {
-        (cardA.name === cardB.name) ? blockCards() : hideCards()
+    const [isWinner, setIsWinner] = useState(false)
+
+    const checkIfIsWinner = () => {
+        if (matchedCards.length === gameCountries.length) setIsWinner(true)
     }
 
-    const blockCards = () => {
-        setMatchedCards(matchedCards.concat(cardA.name, cardB.number))
-        setCardA({})
-        setCardB({})
-    }
-
-    const hideCards = () => {
-        setCardA({})
-        setCardB({})
-    }
-
-    const showCard = (name, index) => {
-        if (cardA.index === index) return 0 // To exit, do nothing.
-        if (!cardA.name) {
-            setCardA({name, index})
-        } else if (!cardB.name) {
-            setCardB({name, index})
+    const handleCardClick = (name, number) => {
+        if (!selectedCard.name) {
+            setSelectedCard({name, number})
+        } else if (selectedCard.name === name) {
+            setCardsToReset([selectedCard.number, number])
+            setSelectedCard({})
+            setMatchedCards(matchedCards.concat(name))
+            checkIfIsWinner()
+        } else {
+            setTimeout(() => {
+                setCardsToReset([selectedCard.number, number])
+                setSelectedCard({})
+            }, 1000)
         }
-        return 1
     }
 
     return (
@@ -62,18 +55,17 @@ const GameScreen = () => {
                         name={country.name}
                         number={i}
                         image={country.imageSrc}
-                        showCard={showCard}
-                        discovered={false}
+                        handleCardClick={handleCardClick}
+                        cardsToReset={cardsToReset}
+                        matchedCards={matchedCards}
                     />
                 ))}
             </div>
-
-            <p>{cardA.name}</p>
-            <p>{cardB.name}</p>
+            
+            {isWinner ? <p>Ganaste</p> : null}
 
         </div>
 
     )
 }
-
 export default GameScreen
