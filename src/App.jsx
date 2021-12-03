@@ -11,6 +11,7 @@ function App() {
                 <Route path='/' element={<HomeScreen/>}/>
                 <Route path='/play' element={<GameScreen/>}/>
                 <Route path='/done' element={<EndedGame/>}/>
+                <Route path="*" element={<HomeScreen/>}/>
             </Routes>
         </div>
     );

@@ -1,8 +1,8 @@
 import './GameScreen.css'
 import gameCountries from "../../assets/countries";
 import {useEffect, useState} from "react";
-import CountryCard from "../atoms/CountryCard";
 import {useNavigate} from "react-router-dom";
+import Board from "../molecules/Board";
 
 const GameScreen = () => {
     const navigate = useNavigate()
@@ -16,53 +16,46 @@ const GameScreen = () => {
         return anArray;
     }
     useEffect(() => {
-        const randomizedCountries = randomizeArray(gameCountries.concat(gameCountries))
-        setCountries(randomizedCountries)
+        setCountries(randomizeArray(gameCountries.concat(gameCountries)))
     }, [])
 
     const [selectedCard, setSelectedCard] = useState({})
     const [cardsToReset, setCardsToReset] = useState([])
     const [matchedCards, setMatchedCards] = useState([])
+    const [disableCards, setDisableCards] = useState(false)
 
     const checkIfIsWinner = () => (matchedCards.length === (gameCountries.length - 1)) ? navigate('/done') : null
 
-    const handleCardClick = (name, number) => {
-        if (!selectedCard.name) {
-            setSelectedCard({name, number})
-        } else if (selectedCard.name === name) {
-            setCardsToReset([selectedCard.number, number])
-            setSelectedCard({})
+    const resetCards = () => {
+        setSelectedCard({})
+        setDisableCards(false)
+    }
+
+    const checkIfMatch = (name, number) => {
+        setDisableCards(true)
+        if (selectedCard.name === name) {
             setMatchedCards(matchedCards.concat(name))
             checkIfIsWinner()
+            resetCards()
         } else {
             setTimeout(() => {
                 setCardsToReset([selectedCard.number, number])
-                setSelectedCard({})
+                resetCards()
             }, 1000)
         }
     }
 
+    const handleChoice = (name, number) => {
+        selectedCard.name ? checkIfMatch(name, number) : setSelectedCard({name, number})
+    }
+
     return (
         <div className='gamescreen-container'>
-            <h1>Game in course</h1>
-            <h2>Discover all equals pairs to win.</h2>
-            <div className='cards-container'>
-                {countries.map((country, i) => (
-                    <CountryCard
-                        name={country.name}
-                        number={i}
-                        image={country.imageSrc}
-                        handleCardClick={handleCardClick}
-                        cardsToReset={cardsToReset}
-                        matchedCards={matchedCards}
-                    />
-                ))}
-            </div>
-
-            <p>Reimaining cards: {gameCountries.length - matchedCards.length}</p>
-
+            <p className='title'>Board game</p>
+            <Board cards={countries} handleChoice={handleChoice} cardsToReset={cardsToReset} matchedCards={matchedCards}
+                   disableCards={disableCards}/>
+            <p className='game-footer'>{gameCountries.length - matchedCards.length} undiscovered pairs</p>
         </div>
-
     )
 }
 export default GameScreen

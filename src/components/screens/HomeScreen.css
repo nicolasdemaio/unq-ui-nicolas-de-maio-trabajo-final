@@ -1,0 +1,50 @@
+.home-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 6rem;
+}
+
+.home-title {
+    font-size: 3rem;
+    margin: 0;
+    color: #1877F2;
+    font-weight: bold;
+    margin: 0 0 2rem 0;
+}
+
+.game-description {
+    background-color: slateblue;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #FFFFFF;
+    border-radius: 12px;
+    font-size: 1.2rem;
+    padding: 2rem;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
+
+.divider-line {
+    margin: 1rem;
+    border: 1px solid #dddfe2;
+    width: 95%;
+}
+
+.play-button {
+    background-color: #297ae8;
+    color: white;
+    font-size: 1.3rem;
+    font-weight: bold;
+    border: none;
+    padding: 0.8rem 1.6rem;
+    border-radius: 8px;
+    transition-duration: 0.2s;
+}
+
+.play-button:hover {
+    background-color: #1658e5;
+    transition-duration: 0.2s;
+    cursor: pointer;
+}

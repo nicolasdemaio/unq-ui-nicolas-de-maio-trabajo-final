@@ -1,5 +1,5 @@
 import {useNavigate} from "react-router-dom";
-import {Fragment} from "react";
+import './HomeScreen.css'
 
 
 const HomeScreen = () => {
@@ -7,16 +7,22 @@ const HomeScreen = () => {
     const navigate = useNavigate()
 
     return (
-        <Fragment>
-            <h1>MEMOTEST</h1>
-            <h2>with countries</h2>
-            <h3>Try to ....</h3>
-            <p>Do you want to try?</p>
-            <button onClick={() => {
-                navigate('/play')
-            }}>Play
-            </button>
-        </Fragment>
+        <div className='home-container'>
+            <p className='home-title'>MEMOTEST</p>
+            <p className='game-description'>
+                <p>Welcome to <strong>'MEMOTEST with countries'</strong> 👋</p>
+                <p>This game consists on a board with different pairs of countries cards</p>
+                <p>What is the objective?</p>
+                <p>Click the cards and discover all equals pairs to win</p>
+                <hr className='divider-line'/>
+                <p>Do you want to try?</p>
+                <button className='play-button' onClick={() => {
+                    navigate('/play')
+                }}>Play
+                </button>
+            </p>
+        </div>
+
     )
 }
 
