@@ -21,10 +21,10 @@ const GameScreen = () => {
 
     const [selectedCard, setSelectedCard] = useState({})
     const [cardsToReset, setCardsToReset] = useState([])
-    const [matchedCards, setMatchedCards] = useState([])
+    const [points, setPoints] = useState(0)
     const [disableCards, setDisableCards] = useState(false)
 
-    const checkIfIsWinner = () => (matchedCards.length === (gameCountries.length - 1)) ? navigate('/done') : null
+    const checkIfIsWinner = () => (points === (gameCountries.length - 1)) ? navigate('/done') : null
 
     const resetCards = () => {
         setSelectedCard({})
@@ -34,7 +34,7 @@ const GameScreen = () => {
     const checkIfMatch = (name, number) => {
         setDisableCards(true)
         if (selectedCard.name === name) {
-            setMatchedCards(matchedCards.concat(name))
+            setPoints(points + 1)
             checkIfIsWinner()
             resetCards()
         } else {
@@ -52,9 +52,9 @@ const GameScreen = () => {
     return (
         <div className='gamescreen-container'>
             <p className='title'>Board game</p>
-            <Board cards={countries} handleChoice={handleChoice} cardsToReset={cardsToReset} matchedCards={matchedCards}
+            <Board cards={countries} handleChoice={handleChoice} cardsToReset={cardsToReset}
                    disableCards={disableCards}/>
-            <p className='game-footer'>{gameCountries.length - matchedCards.length} undiscovered pairs</p>
+            <p className='game-footer'>{gameCountries.length - points} undiscovered pairs</p>
         </div>
     )
 }

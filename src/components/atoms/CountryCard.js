@@ -2,10 +2,9 @@ import './CountryCard.css'
 import {useEffect, useState} from 'react'
 import notDiscoveredImage from './not_discovered_country.png'
 
-const CountryCard = ({name, number, image, handleChoice, cardsToReset, matchedCards, disableCards}) => {
+const CountryCard = ({name, number, image, handleChoice, cardsToReset, disableCards}) => {
 
     const [isSelected, setIsSelected] = useState(false)
-    const [isMatched, setIsMatched] = useState(false)
     const [isDisabled, setIsDisabled] = useState(false)
 
     useEffect(() => {
@@ -13,14 +12,11 @@ const CountryCard = ({name, number, image, handleChoice, cardsToReset, matchedCa
     }, [disableCards])
 
     useEffect(() => {
-        if (!isMatched) {
-            setIsMatched(matchedCards.includes(name))
-            if (cardsToReset.includes(number)) setIsSelected(false)
-        }
-    }, [cardsToReset, matchedCards])
+        if (cardsToReset.includes(number)) setIsSelected(false)
+    }, [cardsToReset])
 
     const handleClick = () => {
-        if (!(isDisabled || isMatched || isSelected)) {
+        if (!(isDisabled || isSelected)) {
             setIsSelected(true)
             handleChoice(name, number)
         }
@@ -28,7 +24,7 @@ const CountryCard = ({name, number, image, handleChoice, cardsToReset, matchedCa
 
     return (
         <div className='country-card ' onClick={handleClick}>
-            {(isMatched || isSelected) ?
+            {isSelected ?
                 <img className='country-image' src={image} alt={name}/> :
                 <img className='country-image' src={notDiscoveredImage} alt='not-discovered'/>}
         </div>
