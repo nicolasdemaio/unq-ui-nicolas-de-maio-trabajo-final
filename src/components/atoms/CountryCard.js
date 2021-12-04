@@ -2,14 +2,14 @@ import './CountryCard.css'
 import {useEffect, useState} from 'react'
 import notDiscoveredImage from './not_discovered_country.png'
 
-const CountryCard = ({name, number, image, handleChoice, cardsToReset, disableCards}) => {
+const CountryCard = ({name, number, image, handleChoice, cardsToReset, disable}) => {
 
     const [isSelected, setIsSelected] = useState(false)
     const [isDisabled, setIsDisabled] = useState(false)
 
     useEffect(() => {
-        setIsDisabled(disableCards)
-    }, [disableCards])
+        setIsDisabled(disable)
+    }, [disable])
 
     useEffect(() => {
         if (cardsToReset.includes(number)) setIsSelected(false)

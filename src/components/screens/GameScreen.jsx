@@ -13,7 +13,7 @@ const GameScreen = () => {
             const j = Math.floor((i + 1) * Math.random());
             [anArray[i], anArray[j]] = [anArray[j], anArray[i]];
         }
-        return anArray;
+        return anArray
     }
     useEffect(() => {
         setCountries(randomizeArray(gameCountries.concat(gameCountries)))
@@ -53,7 +53,7 @@ const GameScreen = () => {
         <div className='gamescreen-container'>
             <p className='title'>Board game</p>
             <Board cards={countries} handleChoice={handleChoice} cardsToReset={cardsToReset}
-                   disableCards={disableCards}/>
+                   disable={disableCards}/>
             <p className='game-footer'>{gameCountries.length - points} undiscovered pairs</p>
         </div>
     )
