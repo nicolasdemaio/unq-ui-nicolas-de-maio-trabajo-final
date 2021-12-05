@@ -7,13 +7,13 @@ const EndedGame = () => {
 
     return (
         <div className='ended-container'>
-            <div className='ended-title'>YOU WIN 👏</div>
+            <div className='ended-title'>GANASTE 👏</div>
             <p className='ended-subtitle-container'>
-                <div className='ended-subtitle'>We hope you have enjoyed the game!</div>
+                <div className='ended-subtitle'>Espero que hayas disfrutado del juego!</div>
                 😄
             </p>
             <button className='ended-button' onClick={() => navigate('/play')}>
-                Play again
+                Jugar de nuevo
             </button>
         </div>
     )

@@ -51,10 +51,10 @@ const GameScreen = () => {
 
     return (
         <div className='gamescreen-container'>
-            <p className='title'>Board game</p>
+            <p className='gamescreen-title'>Tablero en juego</p>
             <Board cards={countries} handleChoice={handleChoice} cardsToReset={cardsToReset}
                    disable={disableCards}/>
-            <p className='game-footer'>{gameCountries.length - points} undiscovered pairs</p>
+            <p className='game-footer'>{gameCountries.length - points} pares sin descubrir</p>
         </div>
     )
 }

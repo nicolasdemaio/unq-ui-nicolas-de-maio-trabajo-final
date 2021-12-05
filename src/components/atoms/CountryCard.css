@@ -1,19 +1,23 @@
-.country-card {
-    border-radius: 20px;
-}
-
-.country-card:hover {
+.card {
+    position: relative;
     cursor: pointer;
 }
 
-.country-image {
+.card img {
     width: 200px;
+    position: absolute;
     border-radius: 20px;
-    transition-duration: 0.2s;
+    left: 0;
+    -webkit-transition: opacity 0.5s ease-in-out;
+    -moz-transition: opacity 0.5s ease-in-out;
+    -o-transition: opacity 0.5s ease-in-out;
+    transition: opacity 0.5s ease-in-out;
 }
 
-.country-image:hover {
-    transform: scale(1.03);
-    transition-duration: 0.2s;
+.card img.top {
+    opacity: 0;
 }
 
+.card img.not-discovered:hover {
+    transform: scale(1.02);
+}

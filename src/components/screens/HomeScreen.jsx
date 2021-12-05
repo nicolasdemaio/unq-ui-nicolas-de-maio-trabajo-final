@@ -10,15 +10,15 @@ const HomeScreen = () => {
         <div className='home-container'>
             <p className='home-title'>MEMOTEST</p>
             <p className='game-description'>
-                <p>Welcome to <strong>'MEMOTEST with countries'</strong> 👋</p>
-                <p>This game consists on a board with different pairs of countries cards</p>
-                <p>What is the objective?</p>
-                <p>Click the cards and discover all equals pairs to win</p>
+                <p>Bienvenido a <strong>'MEMOTEST con Paises'</strong> 👋</p>
+                <p>El juego consiste en un tablero con distintos pares de paises</p>
+                <p>Tu objetivo:</p>
+                <p>Descubrir todos los pares iguales</p>
                 <hr className='divider-line'/>
-                <p>Do you want to try?</p>
+                <p>¿Querés intentarlo?</p>
                 <button className='play-button' onClick={() => {
                     navigate('/play')
-                }}>Play
+                }}>Jugar
                 </button>
             </p>
         </div>
