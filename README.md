@@ -25,3 +25,5 @@ npm install
 npm start
 ```
 
+Por defecto, se nos levantará la aplicación en el puerto *3000* y podemos acceder mediante el siguiente enlace:
+### `http://localhost:3000/`
