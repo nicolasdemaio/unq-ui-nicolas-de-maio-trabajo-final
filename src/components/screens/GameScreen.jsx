@@ -54,7 +54,7 @@ const GameScreen = () => {
             <p className='gamescreen-title'>Tablero en juego</p>
             <Board cards={countries} handleChoice={handleChoice} cardsToReset={cardsToReset}
                    disable={disableCards}/>
-            <p className='game-footer'>{gameCountries.length - points} pares sin descubrir</p>
+            <p className='game-footer'>Puntos sumados: {points}</p>
         </div>
     )
 }
