@@ -65,10 +65,12 @@ const GameScreen = () => {
             <WinnerModal resetGame={resetGame} isWinner={isWinner}/>
             <p className='gamescreen-title'>Tablero en juego ({(uniqueCards === 8) ? '4x4' : (uniqueCards === 18) ? '6x6' : ''})</p>
             <Board cards={countries} handleChoice={handleChoice} cardsToReset={cardsToReset} disable={disableCards} amountOfUniqueCards={uniqueCards}/>
-            <p className='game-footer'>Puntos sumados: {points}</p>
-            {isWinner ? <Button variant="primary" onClick={resetGame}>
-                Jugar de nuevo
-            </Button> : null}
+            <div className='game-footer'>
+                <p className='game-footer-points'>Puntos sumados: {points}</p>
+                {isWinner ? <Button className='button-playagain' variant="primary" onClick={resetGame}>
+                    Jugar de nuevo
+                </Button> : null}
+            </div>
         </div>
     )
 }

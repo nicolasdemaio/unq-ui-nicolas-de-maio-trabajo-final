@@ -3,17 +3,19 @@
     display: grid;
     width: 80vw;
     height: 100vh;
-    margin-bottom: 40px;
+    margin-bottom: 1rem;
     grid-template-columns: repeat(4, 1fr);
+    grid-gap: 2px;
     background-color: #FFFFFF;
     max-width: 800px;
+    padding: 5px;
 }
 
 .cards-container6x6 {
     display: grid;
     width: 80vw;
     height: 100vh;
-    margin-bottom: 40px;
+    margin-bottom: 1rem;
     grid-template-columns: repeat(6, 1fr);
     background-color: #FFFFFF;
     max-width: 800px;
