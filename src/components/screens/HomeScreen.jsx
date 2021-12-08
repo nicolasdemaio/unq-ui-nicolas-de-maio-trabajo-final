@@ -16,8 +16,12 @@ const HomeScreen = () => {
                 <hr className='divider-line'/>
                 <p>¿Querés intentarlo?</p>
                 <button className='play-button' onClick={() => {
-                    navigate('/play')
-                }}>Jugar
+                    navigate('/play', {state: {uniqueCards: 8}})
+                }}>Jugar 4x4
+                </button>
+                <button className='play-button' onClick={() => {
+                    navigate('/play', {state: {uniqueCards: 18}})
+                }}>Jugar 6x6
                 </button>
             </p>
         </div>
