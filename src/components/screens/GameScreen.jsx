@@ -57,7 +57,7 @@ const GameScreen = () => {
         resetCards()
         setPoints(0)
         setIsWinner(false)
-        setCardsToReset(Array(uniqueCards*2 - 0 + 1).fill().map((_, idx) => 0 + idx))
+        setCardsToReset(Array(uniqueCards * 2 + 1).fill().map((_, idx) => idx))
     }
 
     return (
