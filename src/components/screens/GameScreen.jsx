@@ -3,6 +3,7 @@ import gameCountries from "../../assets/countries";
 import {useEffect, useState} from "react";
 import {useLocation, useNavigate} from "react-router-dom";
 import Board from "../molecules/Board";
+import {Modal, Button} from 'react-bootstrap'
 
 const GameScreen = () => {
     const navigate = useNavigate()
@@ -10,7 +11,6 @@ const GameScreen = () => {
 
     const {state} = useLocation()
     const {uniqueCards} = state
-    const boardSize = (uniqueCards === 8) ? '4x4' : (uniqueCards === 18) ? '6x6' : ''
 
     const randomizeArray = anArray => {
         for (let i = anArray.length - 1; i > 0; i--) {
@@ -28,8 +28,14 @@ const GameScreen = () => {
     const [cardsToReset, setCardsToReset] = useState([])
     const [points, setPoints] = useState(0)
     const [disableCards, setDisableCards] = useState(false)
+    const [isWinner, setIsWinner] = useState(false)
 
-    const checkIfIsWinner = () => (points === (uniqueCards - 1)) ? navigate('/done') : null
+    const checkIfIsWinner = () => {
+        if (points === (uniqueCards - 1)) {
+            handleShow()
+            setIsWinner(true)
+        }
+    }
 
     const resetCards = () => {
         setSelectedCard({})
@@ -54,12 +60,50 @@ const GameScreen = () => {
         selectedCard.name ? checkIfMatch(name, number) : setSelectedCard({name, number})
     }
 
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+    const resetGame = () => {
+        resetCards()
+        setPoints(0)
+        setIsWinner(false)
+        setCardsToReset(Array(uniqueCards*2 - 0 + 1).fill().map((_, idx) => 0 + idx))
+    }
+
+    const handlePlayAgain = () => {
+        setShow(false)
+        resetGame()
+    }
+    const handleGoHome = () => {
+        setShow(false)
+        navigate('/')
+    }
+
     return (
         <div className='gamescreen-container'>
-            <p className='gamescreen-title'>Tablero en juego ({boardSize})</p>
+            <Modal show={show} onHide={handleClose}>
+                <Modal.Header>
+                    <Modal.Title>Ganaste</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>Woohoo, has ganado esta ronda!</Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handlePlayAgain}>
+                        Jugar de nuevo
+                    </Button>
+                    <Button variant="primary" onClick={handleGoHome}>
+                        Ir al inicio
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+            <p className='gamescreen-title'>Tablero en juego ({(uniqueCards === 8) ? '4x4' : (uniqueCards === 18) ? '6x6' : ''})</p>
             <Board cards={countries} handleChoice={handleChoice} cardsToReset={cardsToReset}
                    disable={disableCards} amountOfUniqueCards={uniqueCards}/>
             <p className='game-footer'>Puntos sumados: {points}</p>
+            {isWinner ? <Button variant="primary" onClick={resetGame}>
+                Jugar de nuevo
+            </Button> : null}
         </div>
     )
 }
