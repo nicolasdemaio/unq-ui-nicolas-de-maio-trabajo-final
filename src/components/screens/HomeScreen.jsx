@@ -14,15 +14,17 @@ const HomeScreen = () => {
                 <p>Anímate a jugar una partida</p>
                 <p>Te vas a divertir encontrando los pares iguales de paises</p>
                 <hr className='divider-line'/>
-                <p>¿Querés intentarlo?</p>
-                <button className='play-button' onClick={() => {
-                    navigate('/play', {state: {uniqueCards: 8}})
-                }}>Jugar 4x4
-                </button>
-                <button className='play-button' onClick={() => {
-                    navigate('/play', {state: {uniqueCards: 18}})
-                }}>Jugar 6x6
-                </button>
+                <p>Elegí un tamaño de tablero</p>
+                <div className='board-selection'>
+                    <button className='play-button' onClick={() => {
+                        navigate('/play', {state: {uniqueCards: 8}})
+                    }}>4x4
+                    </button>
+                    <button className='play-button' onClick={() => {
+                        navigate('/play', {state: {uniqueCards: 18}})
+                    }}>6x6
+                    </button>
+                </div>
             </p>
         </div>
 
