@@ -23,7 +23,7 @@ const CountryCard = ({name, number, image, handleChoice, cardsToReset, disable})
     }
 
     return (
-        <div className='card ' onClick={handleClick}>
+        <div className='card' onClick={handleClick}>
             <img className='bottom' src={image} alt={name}/>
             <img className={isSelected ? 'top' : 'not-discovered'} src={notDiscoveredImage} alt='not-discovered'/>
         </div>

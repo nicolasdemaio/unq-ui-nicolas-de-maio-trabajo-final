@@ -1,17 +1,20 @@
+
 .cards-container4x4 {
     display: grid;
-    width: 40rem;
+    width: 80vw;
+    height: 100vh;
+    margin-bottom: 40px;
     grid-template-columns: repeat(4, 1fr);
-    grid-gap: 10rem 3rem;
     background-color: #FFFFFF;
-    border-radius: 22px;
+    max-width: 800px;
 }
 
 .cards-container6x6 {
     display: grid;
-    width: 1000px;
+    width: 80vw;
+    height: 100vh;
+    margin-bottom: 40px;
     grid-template-columns: repeat(6, 1fr);
-    grid-gap: 10rem 10rem;
     background-color: #FFFFFF;
-    border-radius: 22px;
+    max-width: 800px;
 }
