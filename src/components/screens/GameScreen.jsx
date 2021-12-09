@@ -23,7 +23,7 @@ const GameScreen = () => {
     useEffect(() => {
         const countriesToRandomize = gameCountries.slice(0, uniqueCards)
         setCountries(randomizeArray(countriesToRandomize.concat(countriesToRandomize)))
-    }, [])
+    }, [uniqueCards])
 
     const [selectedCard, setSelectedCard] = useState({})
     const [cardsToReset, setCardsToReset] = useState([])

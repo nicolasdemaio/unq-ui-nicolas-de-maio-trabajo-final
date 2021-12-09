@@ -7,6 +7,7 @@ const Board = ({cards, handleChoice, cardsToReset, disable, amountOfUniqueCards}
                 {cards.map((card, number) => (
                     <CountryCard
                         name={card.name}
+                        key={number}
                         number={number}
                         image={card.imageSrc}
                         handleChoice={handleChoice}

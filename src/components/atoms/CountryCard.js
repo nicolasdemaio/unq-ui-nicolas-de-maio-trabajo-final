@@ -13,7 +13,7 @@ const CountryCard = ({name, number, image, handleChoice, cardsToReset, disable})
 
     useEffect(() => {
         if (cardsToReset.includes(number)) setIsSelected(false)
-    }, [cardsToReset])
+    }, [cardsToReset, number])
 
     const handleClick = () => {
         if (!(isDisabled || isSelected)) {
