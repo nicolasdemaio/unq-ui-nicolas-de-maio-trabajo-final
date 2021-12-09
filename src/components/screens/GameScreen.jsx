@@ -8,9 +8,10 @@ import WinnerModal from "../atoms/WinnerModal";
 
 const GameScreen = () => {
 
-    const [countries, setCountries] = useState([])
+    const amountOfCards = (amount) => amount ? amount : {uniqueCards : 8}
+    const {uniqueCards} = amountOfCards(useLocation().state)
 
-    const {uniqueCards} = useLocation().state
+    const [countries, setCountries] = useState([])
 
     const randomizeArray = anArray => {
         for (let i = anArray.length - 1; i > 0; i--) {
@@ -63,7 +64,7 @@ const GameScreen = () => {
     return (
         <div className='gamescreen-container'>
             <WinnerModal resetGame={resetGame} isWinner={isWinner}/>
-            <p className='gamescreen-title'>Tablero en juego ({(uniqueCards === 8) ? '4x4' : (uniqueCards === 18) ? '6x6' : ''})</p>
+            <p className='gamescreen-title'>Tablero en juego</p>
             <Board cards={countries} handleChoice={handleChoice} cardsToReset={cardsToReset} disable={disableCards} amountOfUniqueCards={uniqueCards}/>
             <div className='game-footer'>
                 <p className='game-footer-points'>Puntos sumados: {points}</p>
